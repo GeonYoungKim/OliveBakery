@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Reservation">
+
+	<insert id="insertReservation" parameterType="kr.ac.controller.board.dto.ReservationVO">
+		insert into reservation (id,breadname,address,breadquantity,requirement,time) values(#{id},#{breadname},#{address},#{breadquantity,jdbcType=INTEGER},#{requirement},#{time})
+	</insert>
+	
+	<select id="getCountList" parameterType="String" resultType="int">
+		select * from reservation where id=#{id}
+	</select>
+	
+	<select id="ReservationList" parameterType="kr.ac.controller.board.dto.ReservationVO" resultType="kr.ac.controller.board.dto.ReservationVO">
+		SELECT * FROM RESERVATION WHERE id=#{id} ORDER BY time
+	</select>
+	<select id="AndroidLookupList" parameterType="String" resultType="kr.ac.controller.board.dto.ReservationVO">
+		SELECT * FROM RESERVATION WHERE id=#{id}
+	</select>
+	<select id="AndroidReservationList" resultType="String">
+		SELECT distinct id FROM RESERVATION ORDER BY id;
+	</select>
+	<select id="AndroidList" parameterType="kr.ac.controller.board.dto.TimeVO" resultType="kr.ac.controller.board.dto.AndroidReservationVO">
+		SELECT breadname, SUM(breadquantity) as breadquantity FROM RESERVATION where time <![CDATA[ >= ]]> #{time1} and time <![CDATA[ <= ]]> #{time2} group by breadname
+	</select> 
+	<delete id="reservationDelete" parameterType="String">
+		delete from reservation where id=#{id};
+	</delete>
+</mapper>
+

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Chat">
+	<select id="getChatList" parameterType="kr.ac.controller.board.dto.ChatVO" resultType="kr.ac.controller.board.dto.ChatVO">
+		SELECT * FROM gunyoung.chat where roomno=#{roomno};
+	</select>
+	<insert id="insertChat" parameterType="kr.ac.controller.board.dto.ChatVO">
+		insert into gunyoung.chat (roomno,chatcontent,nurseid2,chatno) values(#{roomno},#{chatcontent},#{nurseid2},#{chatno});
+	</insert>
+	<update id="update_chat_room" parameterType="Integer">
+		UPDATE chat SET roomno=0 WHERE roomno=#{roomno}
+	</update> 
+	<update id="update_chat_room2" parameterType="kr.ac.controller.board.dto.SwapRoom">
+		UPDATE chat SET roomno=#{roomno1} WHERE roomno=#{roomno2}
+	</update> 
+</mapper>

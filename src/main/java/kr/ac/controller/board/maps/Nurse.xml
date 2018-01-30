@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Nurse">
+	<select id="getNurse" parameterType="kr.ac.controller.board.dto.NurseVO"  resultType="kr.ac.controller.board.dto.NurseVO">		
+		SELECT * FROM nurse WHERE nurseid=#{nurseid} and password=#{password}
+	</select>
+	<insert id="insertNurse" parameterType="kr.ac.controller.board.dto.NurseVO">
+		insert into nurse (nurseid,password,name,birth,phone,address,image,todayschedule,token) values(#{nurseid},#{password},#{name},#{birth},#{phone},#{address},#{image},#{todayschedule},#{token})
+	</insert>
+	<select id="getNurseList" resultType="kr.ac.controller.board.dto.NurseVO">
+		SELECT * FROM nurse
+	</select>
+	<update id="insertPatientcode" parameterType="kr.ac.controller.board.dto.NurseVO">
+		UPDATE nurse SET patientcode=#{patientcode} WHERE nurseid=#{nurseid}
+	</update> 
+	<update id="update_today_schedule" parameterType="kr.ac.controller.board.dto.NurseVO">
+		update nurse set todayschedule=#{todayschedule} where nurseid=#{nurseid}
+	</update> 
+	<select id="getNurse_by_id" parameterType="String"  resultType="kr.ac.controller.board.dto.NurseVO">
+		SELECT * FROM nurse WHERE nurseid=#{nurseid}
+	</select>
+	<update id="updateToken" parameterType="kr.ac.controller.board.dto.NurseVO">
+		UPDATE nurse SET token=#{token} WHERE nurseid=#{nurseid}
+	</update> 
+</mapper>

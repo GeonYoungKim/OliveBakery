@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="User">
+	<select id="getUserList" resultType="kr.ac.controller.board.dto.UserVO">
+		SELECT * FROM breaduser
+	</select>
+	
+	<select id="getUser" parameterType="String"  resultType="kr.ac.controller.board.dto.UserVO">
+		SELECT * FROM breaduser WHERE id=#{id}
+	</select>
+	
+	<update id="updatePassword" parameterType="kr.ac.controller.board.dto.UserVO">
+		UPDATE breaduser SET password=#{password} WHERE id=#{id}
+	</update> 
+	
+	<update id="updateUser" parameterType="kr.ac.controller.board.dto.UserVO">
+		update breaduser set name=#{name},birth=#{birth},phone=#{phone} where id=#{id}
+	</update>	
+	
+	<update id="updateUserAddress" parameterType="kr.ac.controller.board.dto.UserVO">
+		update breaduser set address1=#{address1},address2=#{address2},address3=#{address3} where id=#{id}
+	</update>
+	
+	<insert id="insertUser" parameterType="kr.ac.controller.board.dto.UserVO">
+		insert into breaduser (id,password,name,birth,phone,address1,address2,address3) values(#{id},#{password},#{name},#{birth},#{phone},#{address1},#{address2},#{address3})
+	</insert>
+	<delete id="userDelete" parameterType="String">
+		delete from breaduser where id=#{id}; 
+	</delete>
+		
+</mapper>
+
