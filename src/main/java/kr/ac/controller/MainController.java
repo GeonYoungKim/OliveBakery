@@ -57,56 +57,7 @@ public class MainController {
 	private static final Logger logger = LoggerFactory.getLogger(MainController.class);
 	@Autowired private kr.ac.controller.board.dao.UserDAO UserDaoImpl=null;	
 	
-	
-	
-	
-	@RequestMapping("/Admin")
-	public void userList(HttpServletRequest request,HttpServletResponse response) throws IOException{
-		request.setCharacterEncoding("utf-8");
-		String actionName = request.getParameter( "a" );
-		
-		if("list".equals(actionName)){
-			System.out.println("list");
-			JSONObject jsonObject=JSONObject.fromObject(JsonResult.success(UserDaoImpl.getUserList()));
-			response.setContentType("application/json; charset=utf-8"); 	
-			response.getWriter().print(jsonObject.toString()); 
-		}else if("delete".equals(actionName)) {
-			System.out.println("delete");
-			String id=request.getParameter("id");
-			UserDaoImpl.userDelete(id);	
-		}else if("breadlist".equals(actionName)) {
-			TimeVO timeVO=new TimeVO();
-			System.out.println("breadlist");
-			String startdate = request.getParameter( "startdate" );
-			long sd=Long.parseLong(startdate);
-			sd=sd*10000;
-			String enddate = request.getParameter( "enddate" );
-			long ed=Long.parseLong(enddate);
-			ed=ed*10000;
-			ed=ed+2359;			
-			timeVO.setTime1(sd);
-			timeVO.setTime2(ed);
-			System.out.println(sd);
-			System.out.println(ed);
-			JSONObject jsonObject=JSONObject.fromObject(JsonResult.success(UserDaoImpl.AndroidList(timeVO)));
-			response.setContentType("application/json; charset=utf-8"); 	
-			response.getWriter().print(jsonObject.toString()); 
-		}else if("reservationlist".equals(actionName)) {
-			JSONObject jsonObject=JSONObject.fromObject(JsonResult.success(UserDaoImpl.AndroidReservationList()));
-			response.setContentType("application/json; charset=utf-8"); 	
-			response.getWriter().print(jsonObject.toString()); 
-		}else if("lookup".equals(actionName)) {
-			String id=request.getParameter("id");
-			JSONObject jsonObject=JSONObject.fromObject(JsonResult.success(UserDaoImpl.AndroidLookupList(id)));
-			response.setContentType("application/json; charset=utf-8"); 	
-			response.getWriter().print(jsonObject.toString()); 
-		}else if("reservationdelete".equals(actionName)) {
-			String id=request.getParameter("id");
-			UserDaoImpl.reservationDelete(id);
-		}
-	}
-	
-	
+
 	@RequestMapping("/OrderHistory")
 	public String OrderHistory(HttpServletRequest request,HttpServletResponse response,HttpSession session) throws UnsupportedEncodingException {
 		ReservationVO vo=new ReservationVO();
