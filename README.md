@@ -1,5 +1,6 @@
 # OliveBakery
-친구 어머니의 빵집 예약 웹어플리케이션
+
+#### 친구 어머니의 빵집 예약 웹어플리케이션
 
 springMVC mybatis mysql jsp html css bootstrap
 
