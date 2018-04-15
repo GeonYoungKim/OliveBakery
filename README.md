@@ -14,7 +14,15 @@ springMVC mybatis mysql jsp html css bootstrap
 
 
 <img src = './img/main.JPG' width = '600' height = '450' />
+
+
 <img src = './img/map.JPG' width = '600' height = '450' />
+
+
 <img src = './img/order.JPG' width = '600' height = '450' />
+
+
 <img src = './img/history.JPG' width = '600' height = '450' />
+
+
 <img src = './img/notice.JPG' width = '600' height = '450' />
